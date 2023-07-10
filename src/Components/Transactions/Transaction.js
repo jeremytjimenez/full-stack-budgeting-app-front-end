@@ -1,14 +1,93 @@
 import React, { useEffect, useState } from "react";
 import axios from "axios";
-// import { useNavigate } from "react-router-dom";
-// import { v4 as uuidv4 } from 'uuid'
+import { useNavigate, useParams } from "react-router-dom";
+
+import "./Transaction.css"
+
 
 function Transaction() {
-    // const navigate = useNavigate();
+    const [transactionArray, setTransactionArray] = useState([])
+    const [transaction, setTransaction] = useState({})
+
+    const navigate = useNavigate();
+
+    useEffect(() => {
+        fetchData();
+    }, []);
+
+    let id = useParams().id
+
+    async function fetchData() {
+        try {
+          let result = await axios.get(`http://localhost:3003/transactions`);
+          setTransactionArray(result.data);
+
+          let foundIndex = result.data.findIndex((item) => {
+            return item.id === id
+          })
+
+          setTransaction(result.data[foundIndex])
+        } catch (e) {
+          console.log(e);
+        }
+    }
+
+    function handleEdit(id) {
+        navigate(`/transactions/${id}/edit`)
+    }
+
+    function handleBackButton() {
+        navigate(`/transactions`)
+    }
+
+    async function handleDeleteById(id) {
+        try {
+            let result = await axios.delete(
+              `http://localhost:3003/transactions/${id}`
+            );
+
+            let foundIndex = transactionArray.findIndex((item) => {
+                return item.id === id
+            })
+      
+            let filteredArray = transactionArray.filter((item) => item !== transactionArray[foundIndex]);
+      
+            setTransactionArray(filteredArray);
+  
+            alert("DELETED")
+  
+            navigate(`/transactions`)
+          } catch (e) {
+            console.log(e);
+          }
+    }
 
     return (
-        <div>
-            Nothing
+        <div className="transaction-container">
+            <h2>{transaction?.item_name}</h2>
+            <div>
+                <div className="transaction-container-content">
+                    <h3>Amount: {transaction?.amount}</h3>
+                    <p>Date: {transaction?.date}</p>
+                    <p>From: {transaction?.from}</p>
+                    <p>Category: {transaction?.category}</p>
+                
+                </div>
+
+                <div className="transaction-container-navigation">
+                    <ul>
+                        <li>
+                            <button onClick={() => handleBackButton()}>Back</button>
+                        </li>
+                        <li>
+                            <button onClick={() => handleEdit(id)}>Edit</button>
+                        </li>
+                        <li>
+                            <button onClick={() => handleDeleteById(id)}>Delete</button>
+                        </li>
+                    </ul>
+                </div>
+            </div>
         </div>
     )
 }

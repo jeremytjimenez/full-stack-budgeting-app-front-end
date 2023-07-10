@@ -1,36 +1,39 @@
-.h2-title {
-    margin: 25px 25px;
-  }
+#total {
+  margin: 25px 25px;
+  text-align: center;
+  color: rgb(25, 55, 82);
+  text-shadow: 1px 1px 3px gray;
+}
   
-  .table-container {
-    max-width: 1200px;
-    margin: 0 auto;
-  }
+.table-container {
+  max-width: 1200px;
+  margin: 0 auto;
+}
   
-  #transactions {
-    font-family: Arial, Helvetica, sans-serif;
-    border-collapse: collapse;
-    width: 100%;
-  }
+#transactions {
+  font-family: Arial, Helvetica, sans-serif;
+  border-collapse: collapse;
+  width: 100%;
+}
   
-  #transactions td,
-  #transactions th {
-    border: 1px solid #ddd;
-    padding: 8px;
-  }
+#transactions td,
+#transactions th {
+  border: 1px solid #ddd;
+  padding: 8px;
+}
   
-  #transactions tr:nth-child(even) {
-    background-color: #f2f2f2;
-  }
+#transactions tr:nth-child(even) {
+  background-color: #f2f2f2;
+}
   
-  #transactions tr:hover {
-    background-color: #ddd;
-  }
+#transactions tr:hover {
+  background-color: #ddd;
+}
   
-  #transactions th {
-    padding-top: 12px;
-    padding-bottom: 12px;
-    text-align: left;
-    background-color: #0901ff;
-    color: white;
-  }
+#transactions th {
+  padding-top: 12px;
+  padding-bottom: 12px;
+  text-align: left;
+  background-color: #0901ff;
+  color: white;
+}

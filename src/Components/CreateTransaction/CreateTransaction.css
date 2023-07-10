@@ -1,0 +1,34 @@
+.create-form-container h2 {
+    padding: 20px 20px;
+    font-size: 32px;
+    color: aliceblue;
+    text-shadow: 1px 1px 3px gray;
+    font-family: Verdana, sans-serif;
+}
+
+.form-container-form {
+    border: 5px solid rgb(106, 185, 217);
+    border-radius: 10px;
+    max-width: 900px;
+    margin: 2em auto;
+    background-color: rgb(70, 202, 243);
+    padding: 10px;
+}
+
+.form-container-form label {
+    font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+}
+
+.form-container-input {
+    margin: 5px 0;
+}
+
+.form-container-input input,
+textarea {
+    width: 100%;
+}
+
+.form-container-input label {
+    margin-bottom: 5px;
+    display: inline-block;
+}

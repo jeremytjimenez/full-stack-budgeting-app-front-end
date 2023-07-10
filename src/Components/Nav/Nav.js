@@ -1,14 +1,16 @@
 import React from 'react'
 import { Link } from 'react-router-dom'
 
+import "./Nav.css"
+
 function Nav() {
   return (
     <div className="nav">
         <ul>
-            <li>
+            <li className="left">
                 <Link to="/transactions">Budgeting App</Link>
             </li>
-            <li id="create-transaction">
+            <li className="right">
                 <Link to="/transactions/new">Create Transaction</Link>
             </li>
         </ul>

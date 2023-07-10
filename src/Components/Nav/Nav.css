@@ -1,11 +1,33 @@
-nav {
-    background-color: aquamarine;
+.nav {
+    background-color: rgb(184, 243, 224);
+    border: 3px solid rgb(147, 209, 222);
+    font-weight: bolder;
     font-size: large;
     font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
 }
 
-#create-transaction {
-    border: 2px solid grey;
-    background-color: aliceblue;
-    padding: 2em;
+ul {
+    list-style: none;
+}
+
+a {
+    text-decoration: none !important;
+    color: blue
+}
+  
+.left {
+    margin-right: auto;
+    padding: 10px 25px;
+    font-size: 50px;
+    text-shadow: 1px 1px 3px gray;
+} 
+  
+.right {
+    padding: 10px 10px;
+    max-width: fit-content;
+    border: 2px solid rgb(187, 34, 34);
+    border-radius: 10px;
+    background-color: rgb(74, 142, 202);
+    margin-left: auto;
+    margin-right: 10px;
 }
