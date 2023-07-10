@@ -1,9 +1,16 @@
-import React from 'react'
+import React, { useEffect, useState } from "react";
+import axios from "axios";
+// import { useNavigate } from "react-router-dom";
+// import { v4 as uuidv4 } from 'uuid'
 
 function Transaction() {
-  return (
-    <div>Transaction</div>
-  )
+    // const navigate = useNavigate();
+
+    return (
+        <div>
+            Nothing
+        </div>
+    )
 }
 
 export default Transaction

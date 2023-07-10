@@ -1,0 +1,11 @@
+nav {
+    background-color: aquamarine;
+    font-size: large;
+    font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+}
+
+#create-transaction {
+    border: 2px solid grey;
+    background-color: aliceblue;
+    padding: 2em;
+}
