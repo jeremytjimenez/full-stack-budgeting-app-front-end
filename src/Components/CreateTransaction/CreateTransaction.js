@@ -6,6 +6,7 @@ import "./CreateTransaction.css"
 
 function CreateTransaction() {
     const navigate = useNavigate()
+
     const [transaction, setTransaction] = useState({
         item_name: "",
         amount: 0,
@@ -13,12 +14,15 @@ function CreateTransaction() {
         from: "",
         category: ""
     })
+    const [withdrawal, setWithdrawal] = useState(true)
+
+    let url = process.env.NODE_ENV === "production" ? "https://full-stack-budgeting-app-back-end.onrender.com" : "http://localhost:3003"
   
     async function handleOnSubmit(e) {
       e.preventDefault();
   
       try {
-          let result = await axios.post("http://localhost:3003/transactions", {
+          let result = await axios.post(`${url}/transactions`, {
               "transaction": transaction
           })
   
@@ -26,7 +30,7 @@ function CreateTransaction() {
 
           alert("Successful!")
   
-          navigate("/transactions")
+          navigate(`/transactions/${result.data.data.id}`)
       } catch (e) {
           console.log(e)
       }
@@ -67,10 +71,26 @@ function CreateTransaction() {
                     <input
                         type="number"
                         value={transaction?.amount}
-                        onChange={(e) => setTransaction({
-                            ...transaction,
-                            amount: e.target.value})}
+                        onChange={(e) => {
+                            if (withdrawal) {
+                                setTransaction({
+                                    ...transaction,
+                                    amount: -Math.abs(Number(e.target.value))})
+                            } else {
+                                setTransaction({
+                                    ...transaction,
+                                    amount: Math.abs(Number(e.target.value))})
+                            }
+                        }}
                         required
+                    />
+                    <br />
+                    <label id="withdrawal">Withdrawal?</label>
+                    <input 
+                        type="checkbox"
+                        checked={withdrawal}
+                        onChange={(e) => setWithdrawal(!withdrawal)}
+                    
                     />
                 </div>
                 

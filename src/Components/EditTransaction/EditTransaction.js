@@ -8,6 +8,8 @@ function EditTransaction() {
     const { id } = useParams();
     const navigate = useNavigate()
 
+    let url = process.env.NODE_ENV === "production" ? "https://full-stack-budgeting-app-back-end.onrender.com" : "http://localhost:3003"
+
     const [transaction, setTransaction] = useState({
         item_name: "",
         amount: 0,
@@ -15,6 +17,7 @@ function EditTransaction() {
         from: "",
         category: ""
     });
+    const [withdrawal, setWithdrawal] = useState(true)
 
     useEffect(() => {
         handleFetchDataById();
@@ -23,10 +26,16 @@ function EditTransaction() {
     async function handleFetchDataById() {
         try { 
         let result = await axios.get(
-            `http://localhost:3003/transactions/${id}`
+            `${url}/transactions/${id}`
         );
 
         setTransaction(result.data.data);
+
+        if (result.data.data.amount > 0) {
+            setWithdrawal(false)
+        } else {
+            setWithdrawal(true)
+        }
         } catch (e) {
         console.log(e);
         }
@@ -37,7 +46,7 @@ function EditTransaction() {
 
         try {
         let result = await axios.put(
-            `http://localhost:3003/transactions/${id}`,
+            `${url}/transactions/${id}`,
             {
             ...transaction
             }
@@ -87,10 +96,24 @@ function EditTransaction() {
                     <input
                         type="number"
                         value={transaction?.amount}
-                        onChange={(e) => setTransaction({
-                            ...transaction,
-                            amount: e.target.value})}
-                        required
+                        onChange={(e) => {
+                            if (withdrawal) {
+                                setTransaction({
+                                    ...transaction,
+                                    amount: -Math.abs(Number(e.target.value))})
+                            } else {
+                                setTransaction({
+                                    ...transaction,
+                                    amount: Math.abs(Number(e.target.value))})
+                            }
+                        }}
+                    />
+                    <br />
+                    <label id="withdrawal">Withdrawal?</label>
+                    <input 
+                        type="checkbox"
+                        checked={withdrawal}
+                        onChange={(e) => setWithdrawal(!withdrawal)}
                     />
                 </div>
                 

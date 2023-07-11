@@ -4,22 +4,44 @@ import { Link } from 'react-router-dom'
 
 import "./Transactions.css"
 
-function Transactions() {
-    const [transactionArray, setTransactionArray] = useState([]);
-    const [total, setTotal] = useState(0)
+function Transactions({ transactionArray, setTransactionArray }) {
+    // const [transactionArray, setTransactionArray] = useState([]);
+    // const [total, setTotal] = useState(0)
+    // const [totalStyle, setTotalStyle] = useState({
+    //     color: "green"
+    // })
+
+    let url = process.env.NODE_ENV === "production" ? "https://full-stack-budgeting-app-back-end.onrender.com" : "http://localhost:3003"
   
     useEffect(() => {
       fetchData();
-      console.log(process.env.NODE_ENV)
     }, []);
 
-    useEffect(() => {
-        calculateTotal(transactionArray)
-    }, [transactionArray])
+    // useEffect(() => {
+    //     calculateTotal(transactionArray)
+
+    //     if (total > 100) {
+    //         setTotalStyle({
+    //             color: "green"
+    //         })
+    //     } 
+        
+    //     if (total > 0 && total < 100) {
+    //         setTotalStyle({
+    //             color: "yellow"
+    //         })
+    //     } 
+        
+    //     if (total < 0) {
+    //         setTotalStyle({
+    //             color: "red"
+    //         })
+    //     }
+    // }, [transactionArray])
   
     async function fetchData() {
       try {
-        let result = await axios.get("http://localhost:3003/transactions");
+        let result = await axios.get(`${url}/transactions`);
         setTransactionArray(result.data);
       } catch (e) {
         console.log(e);
@@ -86,19 +108,19 @@ function Transactions() {
         return formattedDate
     }
 
-    function calculateTotal(array) {
-        let currentTotal = 0
+    // function calculateTotal(array) {
+    //     let currentTotal = 0
 
-        array.forEach((item) => {
-            currentTotal = currentTotal + Number(item.amount)
-        })
+    //     array.forEach((item) => {
+    //         currentTotal = currentTotal + Number(item.amount)
+    //     })
 
-        setTotal(currentTotal)
-    }
+    //     setTotal(currentTotal)
+    // }
   
     return (
         <div>
-            <h2 id="total">Total: {total}</h2>
+            {/* <h2 id="total" style={totalStyle}>Total: {total}</h2> */}
             <div className="table-container">
                 <table id="transactions">
                     <tbody>

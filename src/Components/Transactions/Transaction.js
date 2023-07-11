@@ -5,11 +5,13 @@ import { useNavigate, useParams } from "react-router-dom";
 import "./Transaction.css"
 
 
-function Transaction() {
-    const [transactionArray, setTransactionArray] = useState([])
+function Transaction({ transactionArray, setTransactionArray }) {
+    // const [transactionArray, setTransactionArray] = useState([])
     const [transaction, setTransaction] = useState({})
 
     const navigate = useNavigate();
+
+    let url = process.env.NODE_ENV === "production" ? "https://full-stack-budgeting-app-back-end.onrender.com" : "http://localhost:3003"
 
     useEffect(() => {
         fetchData();
@@ -19,7 +21,7 @@ function Transaction() {
 
     async function fetchData() {
         try {
-          let result = await axios.get(`http://localhost:3003/transactions`);
+          let result = await axios.get(`${url}/transactions`);
           setTransactionArray(result.data);
 
           let foundIndex = result.data.findIndex((item) => {
@@ -43,7 +45,7 @@ function Transaction() {
     async function handleDeleteById(id) {
         try {
             let result = await axios.delete(
-              `http://localhost:3003/transactions/${id}`
+              `${url}/transactions/${id}`
             );
 
             let foundIndex = transactionArray.findIndex((item) => {
@@ -54,7 +56,7 @@ function Transaction() {
       
             setTransactionArray(filteredArray);
   
-            alert("DELETED")
+            alert("Deleted!")
   
             navigate(`/transactions`)
           } catch (e) {
