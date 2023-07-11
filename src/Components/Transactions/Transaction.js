@@ -15,6 +15,7 @@ function Transaction({ transactionArray, setTransactionArray }) {
 
     useEffect(() => {
         fetchData();
+        // eslint-disable-next-line react-hooks/exhaustive-deps
     }, []);
 
     let id = useParams().id

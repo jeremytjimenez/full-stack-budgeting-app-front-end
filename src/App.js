@@ -44,6 +44,7 @@ function App() {
               color: "red"
           })
       }
+      // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [transactionArray])
 
   async function fetchData() {

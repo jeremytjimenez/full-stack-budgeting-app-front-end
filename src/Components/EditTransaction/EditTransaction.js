@@ -21,6 +21,7 @@ function EditTransaction() {
 
     useEffect(() => {
         handleFetchDataById();
+        // eslint-disable-next-line react-hooks/exhaustive-deps
     }, []);
 
     async function handleFetchDataById() {
