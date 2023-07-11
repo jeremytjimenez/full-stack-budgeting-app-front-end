@@ -48,11 +48,11 @@ function Transaction({ transactionArray, setTransactionArray }) {
               `${url}/transactions/${id}`
             );
 
-            let foundIndex = transactionArray.findIndex((item) => {
-                return item.id === id
-            })
+            // let foundIndex = transactionArray.findIndex((item) => {
+            //     return item.id === id
+            // })
       
-            let filteredArray = transactionArray.filter((item) => item !== transactionArray[foundIndex]);
+            let filteredArray = transactionArray.filter((item) => item !== result.data.data);
       
             setTransactionArray(filteredArray);
   

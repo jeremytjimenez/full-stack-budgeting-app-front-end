@@ -22,7 +22,7 @@ function App() {
 
   useEffect(() => {
     fetchData();
-  }, []);
+  });
 
   useEffect(() => {
       calculateTotal(transactionArray)

@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect } from "react";
 import axios from "axios";
 import { Link } from 'react-router-dom'
 
@@ -57,7 +57,6 @@ function Transactions({ transactionArray, setTransactionArray }) {
 
         let month = Number(dateArray[0])
         let day = Number(dateArray[1])
-        let year = Number(dateArray[2])
 
         let stringMonth = ""
 
